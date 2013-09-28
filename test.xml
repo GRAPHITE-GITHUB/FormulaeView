@@ -1,18 +1,20 @@
-<article>
+<!-- FormulaeView Framework -->
+<!-- Copyright Philipp Grozinger GRAPHITE 2013 -->
+<!-- v0.2 -->
+
+<concept>
 	<title>This is an Example</title>
 	<intro>The intro tag provides the ability to add a nice welcoming feel to every Formulae article. This section should include a brief overview of the purpose of the mathematics below.</intro>
-	<concept>
-		<question>This is where a question goes</question>
-		<formula>
-			<maths></maths>
-			<link></link>
-		</formula>
-		<explain>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</explain>
-	</concept>
+	<question>This is where a question goes.</question>
+	<formula>
+		<maths></maths>
+		<link></link>
+	</formula>
+	<explain>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</explain>
 	<example>
 		<caption></caption>
 		<maths></maths>
 		<annotate></annotate>
 	</example>
 	<conclusion>The conclusion should include some more juicy stuff like the intro.</conclusion>
-</article>
+</concept>
