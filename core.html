@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<!-- FormulaeView Framework Copyright -->
-<!-- Philipp Grozinger GRAPHITE 2013 -->
+<!-- FormulaeView Framework -->
+<!-- Copyright Philipp Grozinger GRAPHITE 2013 -->
 <!-- v1.0 -->
 
 <html>
@@ -22,8 +22,14 @@
 			function getCurrentId(){
 				return decodeURIComponent((new RegExp('[?|&]' + 'id' + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
 			}
-			function compileHTML(id){
-				
+			function getXML(id){
+				xhttp = new XMLHttpRequest();
+				xhttp.open("GET", id + ".xml",false);
+				xhttp.send();
+				xmlDoc = xhttp.responseXML;
+				return xmlDoc;
+			}
+			function compileHTML(){
 			}
 		</script>
 	</head>
