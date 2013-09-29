@@ -22,18 +22,23 @@
 			function getCurrentId(){
 				return decodeURIComponent((new RegExp('[?|&]' + 'id' + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
 			}
-			function getXML(id){
-				xhttp = new XMLHttpRequest();
-				xhttp.open("GET", id + ".xml",false);
-				xhttp.send();
-				xmlDoc = xhttp.responseXML;
-				return xmlDoc;
-			}
 			function compileHTML(){
+				$.ajax({
+					url: "articles/" + getCurrentId() + ".xml",
+					dataType: "xml",
+					success: function(xml) {
+						$(xml).children().each(function(){
+							$(this).children().each(function(){
+								if (this.tagName == 'title'){
+									
+								}
+							});
+						});
+					}
+				});
 			}
 		</script>
 	</head>
 	<body>
-		
 	</body>
 </html>
