@@ -7,7 +7,7 @@
 	<head>
 		<title>Formulae</title>
 		<script type="text/javascript" src="jquery.js"></script>
-		<style type="text/css">
+		<style>
 			/* FONTS */
 			@font-face {font-family: kefa; src: url('Kefa.ttc');}
 			/* GENERAL */
@@ -22,18 +22,73 @@
 			function getCurrentId(){
 				return decodeURIComponent((new RegExp('[?|&]' + 'id' + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
 			}
-			function getXML(id){
-				xhttp = new XMLHttpRequest();
-				xhttp.open("GET", id + ".xml",false);
-				xhttp.send();
-				xmlDoc = xhttp.responseXML;
-				return xmlDoc;
-			}
 			function compileHTML(){
+				window.h = "";
+				$.ajax({
+					url: "articles/" + getCurrentId() + ".xml",
+					dataType: "xml",
+					success: function(xml) {
+						$(xml).children('concept').each(function(){
+							$(this).children().each(function(){
+								if (this.tagName == 'title'){
+									h += "<h1>" + this.textContent + "</h1>";
+								}
+								else if (this.tagName == 'intro'){
+									h += "<header><p>" + this.textContent + "</p></header>";
+								}
+								else if (this.tagName == 'concept'){
+									h += "<section>";
+									$(this).children().each(function(){
+										if (this.tagName == 'formula'){
+											h += "<div class='formula'>";
+											$(this).children().each(function(){
+												if (this.tagName == 'maths'){
+													// INCLUDE MATHS CODE HERE
+												}
+												else if (this.tagName == 'link'){
+													// INCLUDE LINK CODE HERE
+												}
+											});
+											h += "</div>";
+										}
+										else if (this.tagName == 'explain'){
+											h += "<p>" + this.textContent + "</p>";
+										}
+										else if (this.tagName == 'question'){
+											h += "<p><i>" + this.textContent + "</i></p>";
+										}
+									});
+									h += "</section>";
+								}
+								else if (this.tagName == 'example'){
+									h += "<section>";
+									$(this).children().each(function(){
+										if (this.tagName == 'caption'){
+											h += "<h2>" + this.textContent + "</h2>";
+										}
+										else if (this.tagName == 'maths'){
+											// INCLUDE MATHS CODE HERE
+										}
+										else if (this.tagName == 'annotate'){
+											h += "<span class='annotate'>" + this.textContent + "</span>";
+										}
+									});
+									h += "</section>";
+								}
+								else if (this.tagName == 'conclusion'){
+									h += "<footer><p>" + this.textContent + "</p></footer>";
+								};
+							});
+							loadHTML();
+						});
+					}
+				});
+			}
+			function loadHTML(){
+				document.body.innerHTML = h;
 			}
 		</script>
 	</head>
 	<body>
-		
 	</body>
 </html>
