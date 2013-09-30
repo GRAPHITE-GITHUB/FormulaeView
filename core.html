@@ -40,7 +40,7 @@
 								h += "<div class='formula'>";
 								$(this).children().each(function(){
 										if (this.tagName == 'maths'){
-											h += "<span class='maths'><scr" + "ipt type='math/tex; mode=display' id='MathJax-Element-1'>" + this.textContent + "</scr" + "ipt></span>";
+											h += "<span class='maths'><scr" + "ipt type='math/tex; mode=display'>" + this.textContent + "</scr" + "ipt></span>";
 										}
 										else if (this.tagName == 'link'){
 											// INCLUDE LINK CODE HERE
@@ -61,7 +61,7 @@
 											h += "<h2>" + this.textContent + "</h2>";
 										}
 										else if (this.tagName == 'maths'){
-											h += "<span class='maths'><scr" + "ipt type='math/tex; mode=display' id='MathJax-Element-1'>" + this.textContent + "</scr" + "ipt></span>";
+											h += "<span class='maths'><scr" + "ipt type='math/tex; mode=display'>" + this.textContent + "</scr" + "ipt></span>";
 										}
 										else if (this.tagName == 'annotate'){
 											h += "<span class='annotate'>" + this.textContent + "</span>";
