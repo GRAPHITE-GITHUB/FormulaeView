@@ -36,29 +36,23 @@
 								else if (this.tagName == 'intro'){
 									h += "<header><p>" + this.textContent + "</p></header>";
 								}
-								else if (this.tagName == 'concept'){
-									h += "<section>";
-									$(this).children().each(function(){
-										if (this.tagName == 'formula'){
-											h += "<div class='formula'>";
-											$(this).children().each(function(){
-												if (this.tagName == 'maths'){
-													// INCLUDE MATHS CODE HERE
-												}
-												else if (this.tagName == 'link'){
-													// INCLUDE LINK CODE HERE
-												}
-											});
-											h += "</div>";
+								else if (this.tagName == 'formula'){
+								h += "<div class='formula'>";
+								$(this).children().each(function(){
+										if (this.tagName == 'maths'){
+											h += "<span class='maths'><scr" + "ipt type='math/tex; mode=display' id='MathJax-Element-1'>" + this.textContent + "</scr" + "ipt></span>";
 										}
-										else if (this.tagName == 'explain'){
-											h += "<p>" + this.textContent + "</p>";
-										}
-										else if (this.tagName == 'question'){
-											h += "<p><i>" + this.textContent + "</i></p>";
+										else if (this.tagName == 'link'){
+											// INCLUDE LINK CODE HERE
 										}
 									});
-									h += "</section>";
+									h += "</div>";
+								}
+								else if (this.tagName == 'explain'){
+									h += "<p>" + this.textContent + "</p>";
+								}
+								else if (this.tagName == 'question'){
+									h += "<p><i>" + this.textContent + "</i></p>";
 								}
 								else if (this.tagName == 'example'){
 									h += "<section>";
@@ -67,7 +61,7 @@
 											h += "<h2>" + this.textContent + "</h2>";
 										}
 										else if (this.tagName == 'maths'){
-											// INCLUDE MATHS CODE HERE
+											h += "<span class='maths'><scr" + "ipt type='math/tex; mode=display' id='MathJax-Element-1'>" + this.textContent + "</scr" + "ipt></span>";
 										}
 										else if (this.tagName == 'annotate'){
 											h += "<span class='annotate'>" + this.textContent + "</span>";
@@ -85,10 +79,18 @@
 				});
 			}
 			function loadHTML(){
-				document.body.innerHTML = h;
+				$(document.body).ready(function() {
+					document.body.innerHTML = h;
+				});
 			}
+		</script>
+		<script type="text/javascript"
+			src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
 		</script>
 	</head>
 	<body>
+		<script type="text/javascript">
+			compileHTML();
+		</script>
 	</body>
 </html>
