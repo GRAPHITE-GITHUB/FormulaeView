@@ -11,12 +11,18 @@
 			/* FONTS */
 			@font-face {font-family: kefa; src: url('Kefa.ttc');}
 			/* GENERAL */
-			html {font-family:kefa;}
+			html {font-family:kefa; text-align:justify;}
 			body {padding:none;}
 			/* TEXT */
 			
 			/* FRAMEWORK */
-			
+			.MathJax_Display {text-align:left !important;}
+			.annotate {}
+			.formula {padding:0px 10px;}
+			table.example td {padding:0px 10px;}
+			span.annotate {}
+			table.example {width:100%;}
+			.explain {}
 		</style>
 		<script type="text/javascript">
 			function getCurrentId(){
@@ -55,16 +61,21 @@
 									h += "<p><i>" + this.textContent + "</i></p>";
 								}
 								else if (this.tagName == 'example'){
-									h += "<section>";
+									h += "<table class='example'>";
 									$(this).children().each(function(){
 										if (this.tagName == 'caption'){
-											h += "<h2>" + this.textContent + "</h2>";
+											h += "<tr><td><span><b>" + this.textContent + "</span></b></td></tr>";
 										}
 										else if (this.tagName == 'maths'){
-											h += "<span class='maths'><scr" + "ipt type='math/tex; mode=display'>" + this.textContent + "</scr" + "ipt></span>";
+											h += "<td><span class='maths'><scr" + "ipt type='math/tex; mode=display'>" + this.textContent + "</scr" + "ipt></span></td>";
 										}
 										else if (this.tagName == 'annotate'){
-											h += "<span class='annotate'>" + this.textContent + "</span>";
+											if (this.textContent.length < 8){
+												h += "<td><span class='annotate'>// " + this.textContent + "</span></td>";
+											}
+											else {
+												h += "<tr><td><span class='annotate'>// " + this.textContent + "</span></td></tr>";												
+											}
 										}
 									});
 									h += "</section>";
@@ -94,3 +105,4 @@
 		</script>
 	</body>
 </html>
+																																		
