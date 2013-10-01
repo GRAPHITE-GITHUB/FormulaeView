@@ -10,19 +10,24 @@
 		<style>
 			/* FONTS */
 			@font-face {font-family: kefa; src: url('Kefa.ttc');}
+			@font-face {font-family: graphite; src: url('GRAPHITE.ttf');}			
 			/* GENERAL */
-			html {font-family:kefa; text-align:justify;}
-			body {padding:none;}
+			html {font-family:kefa; text-align:justify; color:#333333;}
+			body {padding:0px; margin:0px; background:#fdfdfd;}
 			/* TEXT */
 			
 			/* FRAMEWORK */
+			h1, header, footer, section {padding:0px 20px;}
+			header {}
+			section.question {padding:0px 30px;}
 			.MathJax_Display {text-align:left !important;}
 			.annotate {}
-			.formula {padding:0px 10px;}
-			table.example td {padding:0px 10px;}
-			span.annotate {}
-			table.example {width:100%;}
+			.formula {padding:0px 30px;}
+			table.example td {padding:0px 0px 0px 20px;}
+			span.annotate {color:#ff6600;}
+			table.example {width:100%; padding:30px 0px; background:#f2f2f2; border-top:1px solid #dddddd; border-bottom:1px solid #dddddd;}
 			.explain {}
+			span.graphite {font-family:graphite;}
 		</style>
 		<script type="text/javascript">
 			function getCurrentId(){
@@ -55,10 +60,10 @@
 									h += "</div>";
 								}
 								else if (this.tagName == 'explain'){
-									h += "<p>" + this.textContent + "</p>";
+									h += "<section><p>" + this.textContent + "</p></section>";
 								}
 								else if (this.tagName == 'question'){
-									h += "<p><i>" + this.textContent + "</i></p>";
+									h += "<section class='question'><p><i>" + this.textContent + "</i></p></section>";
 								}
 								else if (this.tagName == 'example'){
 									h += "<table class='example'>";
@@ -70,7 +75,7 @@
 											h += "<td><span class='maths'><scr" + "ipt type='math/tex; mode=display'>" + this.textContent + "</scr" + "ipt></span></td>";
 										}
 										else if (this.tagName == 'annotate'){
-											if (this.textContent.length < 8){
+											if (this.textContent.length < 12){
 												h += "<td><span class='annotate'>// " + this.textContent + "</span></td>";
 											}
 											else {
@@ -96,7 +101,7 @@
 			}
 		</script>
 		<script type="text/javascript"
-			src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+			src="mathjax/MathJax.js?config=TeX-AMS_HTML">
 		</script>
 	</head>
 	<body>
