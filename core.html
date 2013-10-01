@@ -17,15 +17,16 @@
 			/* TEXT */
 			
 			/* FRAMEWORK */
-			h1 {color:#444444; font-family:cambria; font-weight:100;}
-			h1, header, footer, section {padding:0px 20px;}
+			h1 {color:#444444; font-family:cambria; font-weight:100; border-left:8px solid #333333; padding:0px 12px;}
+			header, footer, section {padding:0px 20px;}
 			header {border-top:1px solid #cccccc;}
-			section.question {padding:0px 30px;}
+			span.caption {border-left:3px solid #333333; padding-left:10px;}
+			section.question {padding-left:30px;}
 			.MathJax_Display {text-align:left !important;}
 			.formula {padding:0px 30px;}
 			table.example td {padding:0px 0px 0px 20px;}
 			span.annotate {color:#999999;}
-			table.example {margin:30px 0px; width:100%; padding:30px 0px; background:#e8e8e8; border-top:1px solid #c4c4c4; border-bottom:1px solid #dddddd;}
+			table.example {margin:30px 0px; width:100%; padding:30px 0px; background:#e8e8e8; border-top:1px solid #c4c4c4; border-bottom:1px solid #c4c4c4;}
 			footer {text-align:center; padding-bottom:30px;}
 			footer p {text-align:justify;}
 			span.graphite {font-family:graphite;}
@@ -70,7 +71,7 @@
 									h += "<table class='example'>";
 									$(this).children().each(function(){
 										if (this.tagName == 'caption'){
-											h += "<tr><td><span><b>" + this.textContent + "</span></b></td></tr>";
+											h += "<tr><td><span class='caption'><b>" + this.textContent + "</span></b></td></tr>";
 										}
 										else if (this.tagName == 'maths'){
 											h += "<td><span class='maths'><scr" + "ipt type='math/tex; mode=display'>" + this.textContent + "</scr" + "ipt></span></td>";
