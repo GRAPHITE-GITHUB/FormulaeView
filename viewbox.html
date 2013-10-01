@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<!-- FormulaeView Framework -->
+<!-- Copyright Philipp Grozinger GRAPHITE 2013 -->
+<!-- v1.0 -->
+
+<html>
+	<head>
+		<title>Formulae</title>
+		<script type="text/javascript" src="jquery.js"></script>
+		<style>
+			/* FONTS */
+			@font-face {font-family: kefa; src: url('Kefa.ttc');}
+			html {font-family:kefa; text-align:justify; color:#333333;}
+			body {padding:0px; margin:0px; background:#ffffff;}
+			.MathJax_Display {text-align:left !important;}
+		</style>
+		<script type="text/javascript">
+			function getCurrentId(){
+				return decodeURIComponent((new RegExp('[?|&]' + 'id' + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search)||[,""])[1].replace(/\+/g, '%20'))||null;
+			}
+			function compileHTML(){
+				window.h = "";
+				$.ajax({
+					url: "articles/" + getCurrentId() + ".xml",
+					dataType: "xml",
+					success: function(xml) {
+						$(xml).children('concept').each(function(){
+							$(this).children().each(function(){
+								if (this.tagName == 'formula'){
+								h += "<div class='formula'>";
+								$(this).children().each(function(){
+										if (this.tagName == 'maths'){
+											h += "<span class='maths'><scr" + "ipt type='math/tex; mode=display'>" + this.textContent + "</scr" + "ipt></span>";
+											return false;
+										}
+									});
+									h += "</div>";
+								}
+							});
+							loadHTML();
+						});
+					}
+				});
+			}
+			function loadHTML(){
+				$(document.body).ready(function() {
+					document.body.innerHTML = h;
+				});
+			}
+		</script>
+		<script type="text/javascript"
+			src="mathjax/MathJax.js?config=TeX-AMS_HTML">
+		</script>
+	</head>
+	<body>
+		<script type="text/javascript">
+			compileHTML();
+		</script>
+	</body>
+</html>
+																																		
