@@ -3,6 +3,7 @@
 	<editor>Some Other</editor>
 	<title>This is an Example</title>
 	<intro>The intro tag provides the ability to add a nice welcoming feel to every Formulae article. This section should include a brief overview of the purpose of the mathematics below.</intro>
+	<horizontal></horizontal>
 	<question>This is where a question goes.</question>
 	<formula>
 		<maths>y=sucb7825\int_{6}^{3}{34}</maths>

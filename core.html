@@ -30,6 +30,7 @@
 			footer {text-align:center; padding-bottom:30px;}
 			footer p {text-align:justify;}
 			span.graphite {font-family:graphite;}
+			div.horizontal {border-top:1px solid #cccccc;}
 		</style>
 		<script type="text/javascript">
 			function getCurrentId(){
@@ -95,6 +96,9 @@
 								}
 								else if (this.tagName == 'editor'){
 									// ADD EDITOR CODE
+								}
+								else if (this.tagName == 'horizontal'){
+									h += "<div class='horizontal'></div>";
 								}
 							});
 							loadHTML();
