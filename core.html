@@ -31,6 +31,7 @@
 			footer p {text-align:justify;}
 			span.graphite {font-family:graphite;}
 			div.horizontal {border-top:1px solid #cccccc;}
+			img.image {width:100%;}
 		</style>
 		<script type="text/javascript">
 			function getCurrentId(){
@@ -64,6 +65,9 @@
 								}
 								else if (this.tagName == 'explain'){
 									h += "<section><p>" + this.textContent + "</p></section>";
+								}
+								else if (this.tagName == 'image'){
+									h += "<section><img src='images/" + this.textContent + "' class='image' /></section>";
 								}
 								else if (this.tagName == 'question'){
 									h += "<section class='question'><p><i>" + this.textContent + "</i></p></section>";
