@@ -23,13 +23,16 @@
 			span.caption {border-left:3px solid #333333; padding-left:10px;}
 			section.question {padding-left:30px;}
 			.MathJax_Display {text-align:left !important;}
-			.formula {padding:0px 30px;}
+			.formula {padding:0px 30px; text-align:center !important;}
+			.formula .MathJax_Display {text-align:center !important;}
 			table.example td {padding:0px 0px 0px 20px;}
 			span.annotate {color:#999999;}
 			table.example {margin:30px 0px; width:100%; padding:30px 0px; background:#e8e8e8; border-top:1px solid #c4c4c4; border-bottom:1px solid #c4c4c4;}
 			footer {text-align:center; padding-bottom:30px;}
 			footer p {text-align:justify;}
 			span.graphite {font-family:graphite;}
+			div.horizontal {border-top:1px solid #cccccc;}
+			img.image {width:100%; margin-top:20px;}
 		</style>
 		<script type="text/javascript">
 			function getCurrentId(){
@@ -55,6 +58,9 @@
 										if (this.tagName == 'maths'){
 											h += "<span class='maths'><scr" + "ipt type='math/tex; mode=display'>" + this.textContent + "</scr" + "ipt></span>";
 										}
+										else if (this.tagName == 'variables'){
+											h += "<span><i>" + this.textContent + "</i></span>";
+										}
 										else if (this.tagName == 'link'){
 											// INCLUDE LINK CODE HERE
 										}
@@ -63,6 +69,9 @@
 								}
 								else if (this.tagName == 'explain'){
 									h += "<section><p>" + this.textContent + "</p></section>";
+								}
+								else if (this.tagName == 'image'){
+									h += "<section><img src='images/" + this.textContent + "' class='image' /></section>";
 								}
 								else if (this.tagName == 'question'){
 									h += "<section class='question'><p><i>" + this.textContent + "</i></p></section>";
@@ -89,7 +98,16 @@
 								}
 								else if (this.tagName == 'conclusion'){
 									h += "<footer><p>" + this.textContent + "</p></footer>";
-								};
+								}
+								else if (this.tagName == 'author'){
+									// ADD AUTHOR CODE
+								}
+								else if (this.tagName == 'editor'){
+									// ADD EDITOR CODE
+								}
+								else if (this.tagName == 'horizontal'){
+									h += "<div class='horizontal'></div>";
+								}
 							});
 							loadHTML();
 						});
