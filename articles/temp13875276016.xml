@@ -1,0 +1,23 @@
+<concept><author>David McAfee</author><title><title>Power Rule 2</title></title><intro>The Power Rule is used to differentiate terms and is a fundamental process involved with other rules of differentiation. Power rule may also be referred to as the simple rule.</intro>
+	<formula>
+		<maths>\mbox f'(ax^n)=anx^{n-1}</maths>
+	</formula>
+	<explain>The above is the general form for this rule of differentiation.</explain>
+	<example>
+		<caption>Example 1</caption>
+		<maths>f(x)=6x^{4}</maths>
+		<annotate>Some function f(x) is given</annotate>
+<maths>f'(x)=24x^{3}</maths>
+		<annotate>The co-efficient of the x, 6, term is multiplied by the exponent, 4. One is also subtracted from the exponent.</annotate>
+<maths>f(x)=2x^{7/2} </maths>
+<maths> .: f'(x)= 7x^{5/2}</maths>
+		<annotate>Power Rule also applies to terms with fractions. Note that (7/2)-1 = (5/2)</annotate>
+<caption>Example 2</caption>
+
+<maths>f(x)=\sqrt2 x^{\sqrt2}</maths>
+<maths> .: f'(x)= 2x^{(\sqrt2 -1)}</maths>
+		<annotate>Power Rule also works with surds. Note: sqrt(2)*sqrt(2)=2</annotate>
+
+
+	</example>
+	<conclusion>The power rule is used in differentiating. It is part of all the other rules of differentiation, as it is a fundamental derivative law.</conclusion><category>Differential Calculus</category> </concept> 
