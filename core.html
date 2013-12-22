@@ -9,14 +9,15 @@
 		<script type="text/javascript" src="jquery.js"></script>
 		<style>
 			/* FONTS */
-			@font-face {font-family: kefa; src: url('fonts/Kefa.ttc');}			
+			@font-face {font-family: kefa; src: url('fonts/Kefa.ttc');}
+			@font-face {font-family: cam; src: url('fonts/Cambria.ttf');}			
 			/* GENERAL */
 			html {font-family:kefa; text-align:justify; color:#333333;}
 			body {padding:0px; margin:0px; background:#fdfdfd;}
 			/* TEXT */
 			
 			/* FRAMEWORK */
-			h1 {color:#444444; font-family:cambria; font-weight:100; border-left:8px solid #333333; padding:0px 12px; text-align: left;}
+			h1 {color:#444444; font-family:cam; font-weight:100; border-left:8px solid #333333; padding:0px 12px; text-align: left;}
 			header, footer, section {padding:0px 20px;}
 			header {border-top:1px solid #cccccc;}
 			span.caption {border-left:3px solid #333333; padding-left:10px;}
@@ -25,7 +26,7 @@
 			.formula {padding:0px 30px; text-align:center !important;}
 			.formula .MathJax_Display {text-align:center !important;}
 			table.example td {padding:0px 0px 0px 20px;}
-			span.annotate {color:#999999;}
+			span.annotate {color:#999999; font-size: 14px; text-align: left !important;}
 			table.example {margin:30px 0px; width:100%; padding:30px 0px; background:#e8e8e8; border-top:1px solid #c4c4c4; border-bottom:1px solid #c4c4c4;}
 			footer {text-align:center; padding-bottom:30px;}
 			footer p {text-align:justify;}
@@ -86,10 +87,10 @@
 										}
 										else if (this.tagName == 'annotate'){
 											if (this.textContent.length < 12){
-												h += "<td><span class='annotate'>// " + this.textContent + "</span></td>";
+												h += "<td><i><span class='annotate'>" + this.textContent + "</span></i></td>";
 											}
 											else {
-												h += "<tr><td><span class='annotate'>// " + this.textContent + "</span></td></tr>";												
+												h += "<tr><td><i><span class='annotate'>" + this.textContent + "</span></i></td></tr>";												
 											}
 										}
 									});
@@ -116,6 +117,7 @@
 			function loadHTML(){
 				$(document.body).ready(function() {
 					document.body.innerHTML = h;
+					MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
 				});
 			}
 		</script>
