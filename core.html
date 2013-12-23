@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!-- FormulaeView Framework -->
 <!-- Copyright Philipp Grozinger GRAPHITE 2013 -->
-<!-- v1.0 -->
+<!-- v1.2 -->
 
 <html>
 	<head>
@@ -17,7 +17,7 @@
 			/* TEXT */
 			
 			/* FRAMEWORK */
-			h1 {color:#444444; font-family:cam; font-weight:100; border-left:8px solid #333333; padding:0px 12px; text-align: left;}
+			h1 {color:#444444; font-family:cam; font-weight:100; border-left:8px solid #333333; padding:0px 12px; text-align: left; -webkit-user-select:none;}
 			header, footer, section {padding:0px 20px;}
 			header {border-top:1px solid #cccccc;}
 			span.caption {border-left:3px solid #333333; padding-left:10px;}
@@ -25,14 +25,16 @@
 			.MathJax_Display {text-align:left !important;}
 			.formula {padding:0px 30px; text-align:center !important;}
 			.formula .MathJax_Display {text-align:center !important;}
-			table.example td {padding:0px 0px 0px 20px;}
 			span.annotate {color:#999999; font-size: 14px; text-align: left !important;}
+			span.annotate .MathJax_Display, p.explain .MathJax_Display, span.variables .MathJax_Display {display: inline; padding: 0px; margin: 0px;}
 			table.example {margin:30px 0px; width:100%; padding:30px 0px; background:#e8e8e8; border-top:1px solid #c4c4c4; border-bottom:1px solid #c4c4c4;}
+			table.example td {padding:10px 20px; text-align: left;}
+			table.example td span.maths div.MathJax_Display {margin: 0px; margin-left: 20px; color: #444444;}
 			footer {text-align:center; padding-bottom:30px;}
 			footer p {text-align:justify;}
 			span.graphite {font-family:graphite;}
 			div.horizontal {border-top:1px solid #cccccc;}
-			img.image {width:100%; margin-top:20px;}
+			img.image {width:100%; -webkit-user-select: none;}
 		</style>
 		<script type="text/javascript">
 			function getCurrentId(){
@@ -56,10 +58,15 @@
 								h += "<div class='formula'>";
 								$(this).children().each(function(){
 										if (this.tagName == 'maths'){
-											h += "<span class='maths'><scr" + "ipt type='math/tex; mode=display'>" + this.textContent + "</scr" + "ipt></span>";
+											h += "<span class='maths'><scr" + "ipt type='math/tex; mode=display'>" + this.textContent.replace(/\+/g, "\+") + "</scr" + "ipt></span>";
 										}
 										else if (this.tagName == 'variables'){
-											h += "<span><i>" + this.textContent + "</i></span>";
+											$(this).children().each(function(){
+												if (this.tagName == "maths"){
+													this.textContent = "<scr" + "ipt type='math/tex; mode=display'>" + this.textContent + "</scr" + "ipt>";
+												}
+											});
+											h += "<span class='variables'><i>" + this.textContent + "</i></span>";
 										}
 										else if (this.tagName == 'link'){
 											// INCLUDE LINK CODE HERE
@@ -68,10 +75,18 @@
 									h += "</div>";
 								}
 								else if (this.tagName == 'explain'){
-									h += "<section><p>" + this.textContent + "</p></section>";
+									$(this).children().each(function(){
+										if (this.tagName == "maths"){
+											this.textContent = "<scr" + "ipt type='math/tex; mode=display'>" + this.textContent + "</scr" + "ipt>";
+										}
+									});
+									h += "<section><p class='explain'>" + this.textContent + "</p></section>";
 								}
 								else if (this.tagName == 'image'){
 									h += "<section><img src='images/" + this.textContent + "' class='image' /></section>";
+								}
+								else if (this.tagName == 'video'){
+									h += "<section><video class='video' width='100%' controls><source src='videos/" + this.textContent + "' /></video></section>";
 								}
 								else if (this.tagName == 'question'){
 									h += "<section class='question'><p><i>" + this.textContent + "</i></p></section>";
@@ -80,18 +95,18 @@
 									h += "<table class='example'>";
 									$(this).children().each(function(){
 										if (this.tagName == 'caption'){
-											h += "<tr><td><span class='caption'><b>" + this.textContent + "</span></b></td></tr>";
+											h += "<tr><td><span class='caption'>" + this.textContent + "</span></td></tr>";
 										}
 										else if (this.tagName == 'maths'){
-											h += "<td><span class='maths'><scr" + "ipt type='math/tex; mode=display'>" + this.textContent + "</scr" + "ipt></span></td>";
+											h += "<tr><td><span class='maths'><scr" + "ipt type='math/tex; mode=display'>" + this.textContent.replace(/\+/g, "\+") + "</scr" + "ipt></span></td></tr>";
 										}
 										else if (this.tagName == 'annotate'){
-											if (this.textContent.length < 12){
-												h += "<td><i><span class='annotate'>" + this.textContent + "</span></i></td>";
-											}
-											else {
-												h += "<tr><td><i><span class='annotate'>" + this.textContent + "</span></i></td></tr>";												
-											}
+											$(this).children().each(function(){
+												if (this.tagName == "maths"){
+													this.textContent = "<scr" + "ipt type='math/tex; mode=display'>" + this.textContent + "</scr" + "ipt>";
+												}
+											});
+											h += "<tr><td><span class='annotate'>" + this.textContent + "</span></td></tr>";												
 										}
 									});
 									h += "</table>";
