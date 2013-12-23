@@ -22,6 +22,7 @@ jquery.js - jQuery is an open source JavaScript framework which is used for effi
 ```
 /articles - this directory will include all the articles
 /images - this directory will contain all the images for the articles
+/videos - this directory will contain all the videos for the articles
 ```
 
 ### Objective-C Implementation
