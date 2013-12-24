@@ -86,7 +86,7 @@
 									h += "<section><img src='images/" + this.textContent + "' class='image' /></section>";
 								}
 								else if (this.tagName == 'video'){
-									h += "<section><video class='video' width='100%' controls><source src='videos/" + this.textContent + "' /></video></section>";
+									h += "<section><video class='video' width='100%' controls><source src='videos/" + this.textContent + "' /><object width='100%' data='videos/" + this.textContent + "'><embed src='videos/" + this.textContent + "' width='100%'></video></section>";
 								}
 								else if (this.tagName == 'question'){
 									h += "<section class='question'><p><i>" + this.textContent + "</i></p></section>";
