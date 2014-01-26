@@ -20,19 +20,20 @@
 			h1 {color:#444444; font-family:cam; font-weight:100; border-left:8px solid #333333; padding:0px 12px; text-align: left; -webkit-user-select:none;}
 			header, footer, section {padding:0px 20px;}
 			header {border-top:1px solid #cccccc;}
-			span.caption {border-left:3px solid #333333; padding-left:10px;}
-			section.question {padding-left:30px;}
+			div.caption {border-left:3px solid #333333; padding:0px 10px;}
+			section.question {padding:0px 30px;}
 			.MathJax_Display {text-align:left !important;}
 			.formula {padding:0px 30px; text-align:center !important;}
 			.formula .MathJax_Display {text-align:center !important;}
-			span.annotate {color:#999999; font-size: 14px; text-align: left !important;}
-			span.annotate .MathJax_Display, p.explain .MathJax_Display, span.variables .MathJax_Display {display: inline; padding: 0px; margin: 0px;}
-			table.example {margin:30px 0px; width:100%; padding:30px 0px; background:#e8e8e8; border-top:1px solid #c4c4c4; border-bottom:1px solid #c4c4c4;}
-			table.example td {padding:10px 20px; text-align: left;}
-			table.example td span.maths div.MathJax_Display {margin: 0px; margin-left: 20px; color: #444444;}
+			div.annotate {color:#999999; font-size: 14px; text-align: left !important;}
+			div.annotate .MathJax_Display, p.explain .MathJax_Display, div.variables .MathJax_Display {display: inline; padding: 0px; margin: 0px;}
+			table.example {border-spacing:0px; margin:30px 0px; padding:30px 0px; background:#e8e8e8; border-top:1px solid #c4c4c4; border-bottom:1px solid #c4c4c4;}
+			table.example td {border-collapse:collapse; padding:10px 20px; text-align: left;}
+			table.example td div.maths div.MathJax_Display {color: #444444;}
+			table.example div.maths {margin-left: 10px; box-sizing: border-box;}
 			footer {text-align:center; padding-bottom:30px;}
 			footer p {text-align:justify;}
-			span.graphite {font-family:graphite;}
+			div.graphite {font-family:graphite;}
 			div.horizontal {border-top:1px solid #cccccc;}
 			img.image {width:100%; -webkit-user-select: none;}
 		</style>
@@ -58,7 +59,7 @@
 								h += "<div class='formula'>";
 								$(this).children().each(function(){
 										if (this.tagName == 'maths'){
-											h += "<span class='maths'><scr" + "ipt type='math/tex; mode=display'>" + this.textContent.replace(/\+/g, "\+") + "</scr" + "ipt></span>";
+											h += "<div class='maths'><scr" + "ipt type='math/tex; mode=display'>" + this.textContent.replace(/\+/g, "\+") + "</scr" + "ipt></div>";
 										}
 										else if (this.tagName == 'variables'){
 											$(this).children().each(function(){
@@ -66,7 +67,7 @@
 													this.textContent = "<scr" + "ipt type='math/tex; mode=display'>" + this.textContent + "</scr" + "ipt>";
 												}
 											});
-											h += "<span class='variables'><i>" + this.textContent + "</i></span>";
+											h += "<div class='variables'><i>" + this.textContent + "</i></div>";
 										}
 										else if (this.tagName == 'link'){
 											// INCLUDE LINK CODE HERE
@@ -95,10 +96,10 @@
 									h += "<table class='example'>";
 									$(this).children().each(function(){
 										if (this.tagName == 'caption'){
-											h += "<tr><td><span class='caption'>" + this.textContent + "</span></td></tr>";
+											h += "<tr><td><div class='caption'>" + this.textContent + "</div></td></tr>";
 										}
 										else if (this.tagName == 'maths'){
-											h += "<tr><td><span class='maths'><scr" + "ipt type='math/tex; mode=display'>" + this.textContent.replace(/\+/g, "\+") + "</scr" + "ipt></span></td></tr>";
+											h += "<tr><td class='maths'><div class='maths'><scr" + "ipt type='math/tex; mode=display'>" + this.textContent.replace(/\+/g, "\+") + "</scr" + "ipt></div></td></tr>";
 										}
 										else if (this.tagName == 'annotate'){
 											$(this).children().each(function(){
@@ -106,7 +107,7 @@
 													this.textContent = "<scr" + "ipt type='math/tex; mode=display'>" + this.textContent + "</scr" + "ipt>";
 												}
 											});
-											h += "<tr><td><span class='annotate'>" + this.textContent + "</span></td></tr>";												
+											h += "<tr><td><div class='annotate'>" + this.textContent + "</div></td></tr>";												
 										}
 									});
 									h += "</table>";
@@ -135,7 +136,14 @@
 					MathJax.Hub.Queue(["Typeset",MathJax.Hub]);
 				});
 			}
+
 		</script>
+		<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  "HTML-CSS": { linebreaks: { automatic: true } },
+         SVG: { linebreaks: { automatic: true } }
+});
+</script>
 		<script type="text/javascript"
 			src="mathjax/MathJax.js?config=TeX-AMS_HTML">
 		</script>
